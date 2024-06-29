@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_patient">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Reporte de Paciente</h2>
+                        <p>Secuencia: <span t-field="doc.name"/></p>
+                        <p>Nombre: <span t-field="doc.first_name"/></p>
+                        <p>Apellido: <span t-field="doc.last_name"/></p>
+                        <p>RNC: <span t-field="doc.rnc"/></p>
+                        <p>Estado: <span t-field="doc.state"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_paciente" model="ir.actions.report">
+        <field name="name">Reporte de Paciente</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vertical_hospital.report_patient</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
